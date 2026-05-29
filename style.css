@@ -1,0 +1,337 @@
+:root {
+    --red: #C0202A;
+    --red-dark: #9e1920;
+    --red-light: #f5e6e7;
+    --gray-bg: #f0f0f0;
+    --gray-border: #d0d0d0;
+    --gray-input: #e8e8e8;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-mid: #555;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #888;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+
+  .invoice-wrapper {
+    width: 860px;
+    background: var(--white);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+  }
+
+  /* ── HEADER ── */
+  .inv-header {
+    background: var(--red);
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 20px; height: 20px; }
+  .logo-text {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .inv-meta { color: var(--white); }
+  .inv-meta .meta-row {
+    display: grid;
+    grid-template-columns: 120px 8px 1fr;
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    align-items: center;
+  }
+  .inv-meta input {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    width: 100%;
+    outline: none;
+    transition: background 0.2s;
+  }
+  .inv-meta input::placeholder { color: rgba(255,255,255,0.5); }
+  .inv-meta input:focus { background: rgba(255,255,255,0.25); }
+
+  .bill-to { color: var(--white); }
+  .bill-to .bill-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+  .bill-to .meta-row {
+    display: grid;
+    grid-template-columns: 110px 8px 1fr;
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    align-items: center;
+  }
+  .bill-to input {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    width: 100%;
+    outline: none;
+    transition: background 0.2s;
+  }
+  .bill-to input::placeholder { color: rgba(255,255,255,0.5); }
+  .bill-to input:focus { background: rgba(255,255,255,0.25); }
+
+  /* ── BODY ── */
+  .inv-body {
+    background: var(--gray-bg);
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Upload Box */
+  .upload-box {
+    background: var(--white);
+    border: 2px solid var(--gray-border);
+    border-radius: 10px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .upload-box:hover { border-color: var(--red); background: var(--red-light); }
+  .upload-box input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+  .upload-dashed {
+    border: 2px dashed var(--gray-border);
+    border-radius: 6px;
+    padding: 18px 28px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .upload-dashed span {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+  .upload-preview {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: none;
+    padding: 8px;
+  }
+
+  /* Items Table */
+  .items-section { display: flex; flex-direction: column; gap: 0; }
+
+  .items-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+  }
+
+  .items-table thead tr th {
+    background: var(--red);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 10px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .items-table thead tr th:first-child { border-radius: 4px 0 0 4px; text-align: left; padding-left: 12px; }
+  .items-table thead tr th:last-child { border-radius: 0 4px 4px 0; }
+
+  .items-table tbody tr td {
+    background: var(--gray-input);
+    padding: 0;
+    vertical-align: middle;
+  }
+  .items-table tbody tr td:first-child { border-radius: 4px 0 0 4px; }
+  .items-table tbody tr td:last-child { border-radius: 0 4px 4px 0; }
+
+  .items-table tbody tr td input,
+  .items-table tbody tr td .total-cell {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 9px 10px;
+    color: var(--text-dark);
+    text-align: center;
+  }
+  .items-table tbody tr td:first-child input { text-align: left; padding-left: 12px; }
+  .items-table tbody tr td input:focus { background: rgba(192,32,42,0.06); }
+  .items-table tbody tr td .total-cell {
+    color: var(--red-dark);
+    font-weight: 700;
+    display: block;
+  }
+
+  .items-table tbody tr td.del-cell {
+    width: 28px;
+    background: transparent;
+    padding: 0 2px;
+    border-radius: 0 4px 4px 0;
+  }
+  .btn-del {
+    background: none; border: none; cursor: pointer;
+    color: #ccc; font-size: 16px; line-height: 1;
+    padding: 6px 4px;
+    transition: color 0.15s;
+    display: flex; align-items: center;
+  }
+  .btn-del:hover { color: var(--red); }
+
+  /* Tambah + Totals row */
+  .items-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px;
+    gap: 12px;
+  }
+
+  .btn-tambah {
+    background: var(--white);
+    border: 1.5px solid var(--gray-border);
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+  .btn-tambah:hover { border-color: var(--red); color: var(--red); background: var(--red-light); }
+
+  .totals-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 200px;
+  }
+  .total-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .total-row label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-mid);
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: right;
+  }
+  .total-row .total-val {
+    background: var(--gray-input);
+    border: 1px solid var(--gray-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--red-dark);
+    padding: 6px 10px;
+    min-width: 130px;
+    text-align: right;
+  }
+  .total-row.dp-row .total-val {
+    min-height: 52px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  .inv-footer {
+    background: var(--red);
+    padding: 24px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 24px;
+  }
+
+  .payment-info { color: var(--white); }
+  .payment-info .f-title {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .payment-info p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  .catatan-box { color: var(--white); }
+  .catatan-box .f-title {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .catatan-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .catatan-box ul li {
+    font-size: 11.5px;
+    line-height: 1.65;
+    padding-left: 10px;
+    position: relative;
+    color: rgba(255,255,255,0.9);
+  }
+  .catatan-box ul li::before {
+    content: '•';
+    position: absolute; left: 0;
+  }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice - Print.is</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="invoice-wrapper">
+
+  <!-- HEADER -->
+  <div class="inv-header">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 3h14a2 2 0 0 1 2 2v4H3V5a2 2 0 0 1 2-2z" fill="#C0202A"/>
+          <rect x="3" y="9" width="18" height="12" rx="1" fill="#C0202A"/>
+          <circle cx="7" cy="13" r="1.5" fill="white"/>
+        </svg>
+      </div>
+      <span class="logo-text">Print.is</span>
+    </div>
+
+    <div class="inv-meta">
+      <div class="meta-row">
+        <span>Invoice Number</span><span>:</span>
+        <input type="text" id="invNumber" placeholder="INV-001">
+      </div>
+      <div class="meta-row">
+        <span>Invoice Date</span><span>:</span>
+        <input type="date" id="invDate">
+      </div>
+      <div class="meta-row">
+        <span>Due Date</span><span>:</span>
+        <input type="date" id="dueDate">
+      </div>
+    </div>
+
+    <div class="bill-to">
+      <div class="bill-title">Bill to :</div>
+      <div class="meta-row">
+        <span>Nama Pelanggan</span><span>:</span>
+        <input type="text" placeholder="Nama lengkap">
+      </div>
+      <div class="meta-row">
+        <span>No HP</span><span>:</span>
+        <input type="text" placeholder="08xx-xxxx-xxxx">
+      </div>
+      <div class="meta-row">
+        <span>Alamat</span><span>:</span>
+        <input type="text" placeholder="Alamat lengkap">
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="inv-body">
+
+    <!-- Upload Box -->
+    <div class="upload-box" id="uploadBox">
+      <input type="file" accept="image/*" id="fileInput" onchange="handleUpload(event)">
+      <img class="upload-preview" id="uploadPreview" alt="Preview">
+      <div class="upload-dashed" id="uploadLabel">
+        <span>Upload File Here</span>
+      </div>
+    </div>
+
+    <!-- Items + Totals -->
+    <div class="items-section">
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th style="width:42%">Deskripsi</th>
+            <th style="width:22%">Harga Satuan</th>
+            <th style="width:10%">QTY</th>
+            <th style="width:22%">Total Harga</th>
+            <th style="width:4%"></th>
+          </tr>
+        </thead>
+        <tbody id="itemsBody">
+          <!-- default 1 row injected by JS -->
+        </tbody>
+      </table>
+
+      <div class="items-footer">
+        <button class="btn-tambah" onclick="tambahBaris()">+ Tambah</button>
+
+        <div class="totals-box">
+          <div class="total-row">
+            <label>TOTAL</label>
+            <div class="total-val" id="grandTotal">Rp 0</div>
+          </div>
+          <div class="total-row dp-row">
+            <label>Min DP</label>
+            <div class="total-val" id="minDP">Rp 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="inv-footer">
+    <div class="payment-info">
+      <div class="f-title">Metode Pembayaran :</div>
+      <p>BCA – 649 602 7721<br>A.N Ahmad Quantum Khairil Nikmat</p>
+    </div>
+    <div class="catatan-box">
+      <div class="f-title">Catatan</div>
+      <ul>
+        <li>Pembayaran DP sebesar 70% dilakukan sebelum proses produksi dimulai.</li>
+        <li>Pengerjaan pesanan akan diproses setelah pembayaran DP diterima.</li>
+        <li>Hindari menyetrika langsung pada bagian sablon untuk menjaga kualitas cetakan.</li>
+        <li>Saat mencuci, balik bagian luar dan dalam baju terlebih dahulu agar sablon lebih awet.</li>
+        <li>Dianjurkan mencuci menggunakan air dingin dan tidak menggunakan pemutih.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
